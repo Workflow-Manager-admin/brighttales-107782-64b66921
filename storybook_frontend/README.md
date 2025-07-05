@@ -1,82 +1,54 @@
-# Lightweight React Template for KAVIA
+# BrightTales - Playful Storybook Frontend
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+This project is a playful, mobile-friendly React app for reading animated children’s stories, built with Tailwind, custom SVG/illustrations, and a gentle pastel + vibrant accent color palette.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- Delightful pastel backgrounds with soft accent gradients and floating "clouds"
+- **Google Fonts**: Fredoka One, Baloo 2, Comic Neue — round, friendly display and body fonts
+- Animated SVG characters and buttons (bouncy, wiggly, pulsating, glowing, waving, etc.)
+- Full-screen, floating rounded story cards with a minimal, uncluttered layout
+- Large tap targets (≥48x48px), responsive text scaling, and swipe navigation for mobile
+- Floating Home button (top-left, house icon) and progress toast
+- Progress bar ("Page 1 of N")
+- Speech bubble text for story content
+- Navigation with animated large next/prev arrows at corners, with playful motion on tap/hover/focus
+- Supabase-provided in-app progress saving (auto-save + toast alert)
+- All interactivity implements accessible ARIA/keyboard support
 
-## Getting Started
+## Color Palette
 
-In the project directory, you can run:
+- `primary` – Pastel Yellow (`#FFBB00`)
+- `secondary` – Turquoise (`#2EC4B6`)
+- `accent` – Vibrant Pink/Red (`#E71D36`)
+- `storybg` – Very light warm yellow (`#FFFBEA`)
 
-### `npm start`
+See `tailwind.config.js` for full palette and animation, or `src/index.css` for font usage.
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Fonts
 
-### `npm test`
+All fonts are loaded via Google Fonts. See `src/index.css` for the import lines. Fonts used:
+- [Fredoka One](https://fonts.google.com/specimen/Fredoka+One)
+- [Baloo 2](https://fonts.google.com/specimen/Baloo+2)
+- [Comic Neue](https://fonts.google.com/specimen/Comic+Neue)
 
-Launches the test runner in interactive watch mode.
+## Mobile-Friendly
 
-### `npm run build`
+The layout, buttons, tap targets, and scaling are designed first for mobile use. All interactive elements are at least 48x48px.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Animation
 
-## Customization
+Character and button motion is handled with custom Tailwind keyframes (see `tailwind.config.js`). If you need to add new styles or SVGs, follow the playful, simple illustration style.
 
-### Colors
+## Development
 
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
 ```
+npm install
+npm start
+```
+Visit [http://localhost:3000](http://localhost:3000)
 
-### Components
+## Story Data
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+Add new chapters in `src/App.js` with appropriate SVG assets for maximally vivid, child-friendly visual storytelling!
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

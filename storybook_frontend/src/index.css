@@ -1,15 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+/* Google Fonts: Fredoka One, Baloo 2, Comic Neue - playful set */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Baloo+2:wght@400;700&family=Comic+Neue:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* App-wide body style */
 body {
   @apply bg-storybg font-playful;
   margin: 0;
-  font-family: 'Fredoka One', Comic Sans MS, Comic Sans, cursive, sans-serif;
+  font-family: 'Fredoka One', 'Baloo 2', 'Comic Neue', Comic Sans MS, Comic Sans, cursive, sans-serif;
+  font-size: 18px;
+  background: radial-gradient(ellipse at top, #FFF9DE 70%, #E0ECFF 100%);
+  color: #282c34;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #FFFBEA;
+  min-height: 100vh;
+  overscroll-behavior: none;
 }
 
 code {
