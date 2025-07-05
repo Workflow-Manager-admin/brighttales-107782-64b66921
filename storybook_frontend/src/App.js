@@ -164,39 +164,31 @@ function AnimatedBackground() {
 
 // Keyframes for blobs and basic animation in Tailwind config
 
-// PUBLIC_INTERFACE
-function useProgress(userId) {
+/**
+ * PUBLIC_INTERFACE
+ * useProgress - only saves progress (write-only). No loading/fetching from Supabase.
+ */
+function useProgress() {
   const [loading, setLoading] = useState(false);
-  const [lastChapter, setLastChapter] = useState(0);
   const [error, setError] = useState(null);
-
-  // PUBLIC_INTERFACE
-  async function loadProgress(uid) {
-    setLoading(true);
-    setError(null);
-    const { data, error } = await supabase
-      .from("progress")
-      .select("last_chapter")
-      .eq("user_id", uid)
-      .maybeSingle();
-    if (error) setError(error.message);
-    setLastChapter(data?.last_chapter ?? 0);
-    setLoading(false);
-    return data?.last_chapter ?? 0;
-  }
 
   // PUBLIC_INTERFACE
   async function saveProgress(uid, chapterIdx) {
     setLoading(true);
     setError(null);
-    const { error } = await supabase
-      .from("progress")
-      .upsert({ user_id: uid, last_chapter: chapterIdx });
-    if (error) setError(error.message);
+    try {
+      const { error } = await supabase
+        .from("progress")
+        .upsert({ user_id: uid, last_chapter: chapterIdx });
+      if (error) setError(error.message);
+    } catch (e) {
+      setError(e.message || "Save error");
+    }
     setLoading(false);
   }
 
-  return { lastChapter, loadProgress, saveProgress, loading, error };
+  // No reading/loading progress (as per requirements)
+  return { saveProgress, loading, error };
 }
 
 function useSwipeable(onSwipeLeft, onSwipeRight) {
@@ -309,21 +301,12 @@ export default function App() {
   const [inputId, setInputId] = useState("");
   const [chapterIdx, setChapterIdx] = useState(0);
 
-  const { lastChapter, loadProgress, saveProgress, loading, error } = useProgress(userId);
+  const { saveProgress, loading, error } = useProgress();
 
   // Toast state for saved progress
   const [showToast, setShowToast] = useState(false);
 
-  // Load progress after user submits ID
-  useEffect(() => {
-    if (stage === "story" && userId) {
-      (async () => {
-        const savedIdx = await loadProgress(userId);
-        setChapterIdx(savedIdx || 0);
-      })();
-    }
-    // eslint-disable-next-line
-  }, [stage, userId]);
+  // Always start from chapter 0 — no loading/fetching progress
 
   // Save progress on chapter change
   useEffect(() => {
