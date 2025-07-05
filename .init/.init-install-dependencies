@@ -1,0 +1,4 @@
+{
+    "command": "npm install",
+    "working_directory": "/home/kavia/workspace/code-generation/brighttales-107782-64b66921/storybook_frontend"
+}
